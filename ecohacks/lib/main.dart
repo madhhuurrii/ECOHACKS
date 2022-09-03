@@ -64,19 +64,39 @@
 //   }
 // }
 
+import 'package:ecohacks/screens/Login_Screen.dart';
 import 'package:flutter/material.dart';
+import 'package:firebase_core/firebase_core.dart';
 import 'package:ecohacks/screens/Splash_Screen.dart';
 
-void main() => runApp(MainApp());
+void main() async{
+  // WidgetsFlutterBinding.ensureInitialized();
+  // await Firebase.initializeApp();
+  runApp(MainApp());
+}
 
 class MainApp extends StatelessWidget {
-  const MainApp({super.key});
-
-  @override
+   MainApp({super.key});
+   
+  //  final Future<FirebaseApp> _initialization = Firebase.initializeApp();
+     @override
   Widget build(BuildContext context) {
     return MaterialApp(
       title: 'Ecohacks',
       home: SplashScreen(),
+      // FutureBuilder(
+      //   future: _initialization,
+      //    builder: (context, snapshot){
+      //     if(snapshot.hasError){
+      //       print("Error");
+      //      }
+      //      if(snapshot.connectionState==ConnectionState.done){
+      //       return SplashScreen();
+              
+      //    }
+      //    return CircularProgressIndicator();
+      //    },
+      //    ),
     );
   }
 }

@@ -102,13 +102,13 @@ class LogIn extends StatelessWidget {
             
             side: BorderSide(width: 2.0, color: Color(0xFF5BEA18), ),
             // padding: const EdgeInsets.all(25),
-            padding: const EdgeInsets.fromLTRB(100, 25, 100, 25),
+            padding: const EdgeInsets.fromLTRB(110, 25, 110, 25),
             shape: StadiumBorder(),
             
            ),
            
           
-            child: Text('Log In',
+            child: Text('Existing User, Log In',
             style: TextStyle(color: Color(0xFF5BEA18), fontSize: 21.0,),)
            
             // child: Align(

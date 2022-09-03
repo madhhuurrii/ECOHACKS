@@ -1,10 +1,18 @@
+import 'package:firebase_core/firebase_core.dart';
+import 'package:ecohacks/screens/Home_Screen.dart';
 import 'package:flutter/material.dart';
-
+import 'package:firebase_auth/firebase_auth.dart';
+import 'package:fluttertoast/fluttertoast.dart';
 void main()=> runApp(LoginScreen());
+
+final unameController = TextEditingController();
+final passController = TextEditingController();  
+String uname = "uname";
+String pass = "pass";
 
 class LoginScreen extends StatelessWidget {
   const LoginScreen({super.key});
-
+ 
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
@@ -20,6 +28,11 @@ class LoginScreen extends StatelessWidget {
                 Padding(  
                   padding: EdgeInsets.fromLTRB(100, 10, 100, 10),  
                   child: TextField(  
+                    controller: unameController,
+                    // keyboardType: TextInputType.username,
+                    // onChanged:(value){
+                    //     username= value;
+                    //   },
                     decoration: InputDecoration(  
                       enabledBorder: const OutlineInputBorder(
                         borderSide: const BorderSide(width: 2.0, color: Color(0xFF5BEA18), ),
@@ -33,13 +46,18 @@ class LoginScreen extends StatelessWidget {
                 Padding(  
                   padding: EdgeInsets.fromLTRB(100, 10, 100, 10),  
                   child: TextField(  
+                    controller: passController,
                      style: TextStyle(color: Color(0xFF5BEA18)),
                     obscureText: true,  
+                //      onChanged: (value){
+                //   password=value;
+                //  },
                     decoration: InputDecoration(  
                       enabledBorder: const OutlineInputBorder(
-                         borderSide: const BorderSide(width: 2.0, color: Color(0xFF5BEA18), ),
+                         borderSide: const BorderSide(width: 2.0, color: Color(0xFF5BEA18), 
+                         ),
             // padding: const EdgeInsets.all(25),
-            
+                
            
                       ), 
                     
@@ -67,8 +85,21 @@ class SubmitButton extends StatelessWidget {
     return OutlinedButton(
       onPressed: (() {
         debugPrint('Will Create soon!');
-        Navigator.push(context, MaterialPageRoute(builder: (BuildContext context){ return LoginScreen();}),
-        );
+
+       if((uname==unameController.text)&&(pass==passController.text)){
+          debugPrint('logined in!');
+        Navigator.push(context, MaterialPageRoute(builder: (BuildContext context){ return HomeScreen() ;}),);
+       }
+       else{
+           Fluttertoast.showToast(
+                          msg: "Invalid Username or Password");
+                           debugPrint( unameController.text);
+                           debugPrint(passController.text);
+                          unameController.text="";
+                          passController.text="";
+                          
+       }
+        
       }),
       
       style: OutlinedButton.styleFrom(

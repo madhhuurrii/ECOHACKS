@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "351466468403",
+    "project_id": "ecohacks-9759f",
+    "storage_bucket": "ecohacks-9759f.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:351466468403:android:19eeeda7ddd2bfbd6f9f46",
+        "android_client_info": {
+          "package_name": "com.example.ecohacks"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "351466468403-s90iqjpsg7qbce5n9dmavnu9457iqkkh.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAnfNrzdES9mXW1dINA_--6axAH_4hyRcI"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "351466468403-s90iqjpsg7qbce5n9dmavnu9457iqkkh.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
