@@ -65,6 +65,7 @@
 // }
 
 import 'package:ecohacks/screens/Login_Screen.dart';
+import 'package:ecohacks/screens/Home_Screen.dart';
 import 'package:flutter/material.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:ecohacks/screens/Splash_Screen.dart';
@@ -83,7 +84,7 @@ class MainApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       title: 'Ecohacks',
-      home: SplashScreen(),
+      home: HomeScreen()
       // FutureBuilder(
       //   future: _initialization,
       //    builder: (context, snapshot){

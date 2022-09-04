@@ -65,6 +65,7 @@
 //   }
 // }
 
+import 'package:ecohacks/screens/Login_Screen.dart';
 import 'package:flutter/material.dart';
 
 void main() => runApp(const HomeScreen());
@@ -72,7 +73,7 @@ void main() => runApp(const HomeScreen());
 class HomeScreen extends StatelessWidget {
   const HomeScreen({super.key});
 
-  static const appTitle = 'Drawer Demo';
+  static const appTitle = 'Home Screen';
 
   @override
   Widget build(BuildContext context) {
@@ -92,57 +93,84 @@ class HomeScree extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       
-      appBar:  AppBar( title:Image.asset('assets/Group1.png'), backgroundColor: Color(0xFF5BEA18),), 
+      appBar:  AppBar( title:Image.asset('assets/Group1.png'),  backgroundColor: Color(0xFF5BEA18),), 
       
       backgroundColor: Color(0xFFD9ECD0),
       
      
-      body:Container(
-        
+      body:
+      
+      Container(
+      
    padding: EdgeInsets.fromLTRB(10,10,10,0),
    height: 220,
    width: double.maxFinite,
    
    child: Card(
      elevation: 5,
-     child:
-     new Padding(
- padding: EdgeInsets.all(7),
- child: Stack(
- children: <Widget>[
-   Align(
-     alignment: Alignment.centerRight,
-     child: Stack(
-       children: <Widget>[
-         Padding(
-             padding: const EdgeInsets.only(left: 10, top: 5),
-             child: Column(
-               children: <Widget>[
-                 Row(
-                   children: <Widget>[
-                     Padding(
-                       padding: const EdgeInsets.only(left: 15.0),
-                       child: Align(
-                           alignment: Alignment.centerLeft,
-                          //  child: Icon(
-                            
-                          //    color: Colors.amber,
-                          //    size: 40,
-                          //  )
-                          child: Text('Plantect 1'),
-                          ),
-                     )
-                   ],
-                 )
-               ],
-             ))
-       ],
-     ),
-   )
- ]),
-),
-   ),
+      
+     child: Row(  
+         
+          mainAxisAlignment: MainAxisAlignment.spaceEvenly,  
+          children:<Widget>[  
+            
+            Container(  
+              margin: EdgeInsets.all(20.0),  
+              padding: EdgeInsets.all(12.0),  
+              // decoration:BoxDecoration(  
+              //     borderRadius:BorderRadius.circular(8),  
+              //     // color:Colors.red  
+              // ),  
+              child: Image.asset('assets/logo.png'),  
+            ),  
+            Container(  
+              // child:Text("Plantect 1",style: TextStyle(color:Color(0xFF5BEA18),fontSize:30),),
+              
+              margin: EdgeInsets.all(20.0),  
+              padding: EdgeInsets.all(12.0),  
+              // decoration:BoxDecoration(  
+              //     borderRadius:BorderRadius.circular(8),  
+              //     color:Colors.red  
+              // ), 
+              // 
+        
+              child:
+              Row(
+                
+                  mainAxisAlignment: MainAxisAlignment.spaceAround,
+  children: const <Widget>[
+   
+    Icon(
+      Icons.share,
+      color: Colors.black,
+      size: 36.0,
+      
+      semanticLabel: 'Text to announce in accessibility modes',
+    ),
+     Padding(padding: EdgeInsets.all(12.0), ),
+    Icon(
+      Icons.delete,
+      color: Colors.black,
+      size: 36.0,
+    ),
+    Padding(padding: EdgeInsets.all(12.0), ),
+    Icon(
+      Icons.edit,
+      color: Colors.black,
+      size: 36.0,
+    ),
+  ],
+)
+            ),  
+            
+          ]  
+      ),  
+    )  
+    
+ 
  ),
+
+   
         
     
       drawer: Drawer(
