@@ -3,20 +3,24 @@ import 'package:ecohacks/screens/Home_Screen.dart';
 import 'package:flutter/material.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:fluttertoast/fluttertoast.dart';
-void main()=> runApp(LoginScreen());
+import 'package:ecohacks/screens/Login_Screen.dart';
+
+void main()=> runApp(RegScreen());
+
 
 // final unameController = TextEditingController();
 // final passController = TextEditingController();  
 String email="";
 String pass="";
-
-class LoginScreen extends StatelessWidget {
-  const LoginScreen({super.key});
- 
+// final _auth = FirebaseAuth.instance;
+class RegScreen extends StatelessWidget {
+  const RegScreen({super.key});
+  
   @override
   Widget build(BuildContext context) {
+    
     return MaterialApp(
-      title: 'Login',
+      title: 'Registration',
       home: Scaffold(
         backgroundColor: Color(0xFFD9ECD0),
         body: new Center(
@@ -28,7 +32,7 @@ class LoginScreen extends StatelessWidget {
                 Padding(  
                   padding: EdgeInsets.fromLTRB(100, 10, 100, 10),  
                   child: TextField(  
-                    // controller: unameController,
+                    
                     // keyboardType: TextInputType.username,
                     onChanged:(value){
                         email= value;
@@ -77,13 +81,14 @@ class LoginScreen extends StatelessWidget {
   }
 }
 
+
 class SubmitButton extends StatelessWidget {
   const SubmitButton({super.key});
 
   @override
   Widget build(BuildContext context) {
     return OutlinedButton(
-      onPressed: (() async {
+      onPressed: (() async{
         debugPrint('Will Create soon!');
 
       //  if((uname==unameController.text)&&(pass==passController.text)){
@@ -100,25 +105,20 @@ class SubmitButton extends StatelessWidget {
       //                     passController.text="";
                           
       //  }
-      // static Future<String?> mailRegister(String uname,String pass)async{
-      //   try{
-      //     await FirebaseAuth.instance.createUserWithEmailAndPassword(email: uname, password: pass);
-      //     return null;
-      //   } on FirebaseAuthException catch(ex){
-      //     return "${ex.code}:${ex.message}";
-      //   }
-      // }
-      try {
-                     final newUser = await FirebaseAuth.instance.signInWithEmailAndPassword(
-                         email: email, password: pass);
-                    
-                     if (newUser != null) {
-                       //successfully login
-                       //navigate the user to main page
-                       // i am just showing toast message here
-                        Navigator.push(context, MaterialPageRoute(builder: (BuildContext context){ return HomeScreen() ;}),);
-                     }
-                   } catch (e) {print(e);}
+     
+        try{
+          final newuser= await FirebaseAuth.instance.createUserWithEmailAndPassword(email: email, password: pass);
+           if (newuser != null) {
+                        Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                              builder: (context) => LoginScreen()));
+           }
+        }
+        catch(e){
+          print(e);
+        }
+     
         
       }),
       
@@ -132,7 +132,7 @@ class SubmitButton extends StatelessWidget {
            ),
            
           
-            child: Text('Log In',style: TextStyle(color: Color(0xFF5BEA18), fontSize: 21.0,),)
+            child: Text('Register!',style: TextStyle(color: Color(0xFF5BEA18), fontSize: 21.0,),)
            
             // child: Align(
             //   child: Padding(padding: const EdgeInsets.symmetric(horizontal: 12.0)),

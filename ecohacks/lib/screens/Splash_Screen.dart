@@ -1,5 +1,6 @@
 import 'package:ecohacks/screens/Login_Screen.dart';
 import 'package:flutter/material.dart';
+import 'package:ecohacks/screens/Reg_Screen.dart';
 
 
 void main()=>runApp(SplashScreen());
@@ -58,6 +59,8 @@ class CreateButton extends StatelessWidget {
     return OutlinedButton(
       onPressed: (() {
         debugPrint('Will Create soon!');
+        Navigator.push(context, MaterialPageRoute(builder: (BuildContext context){ return RegScreen();}),
+        );
       }),
       style: OutlinedButton.styleFrom(
             
