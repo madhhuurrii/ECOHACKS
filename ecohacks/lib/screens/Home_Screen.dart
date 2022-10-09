@@ -69,6 +69,7 @@ import 'package:ecohacks/screens/Login_Screen.dart';
 import 'package:flutter/material.dart';
 import 'dart:io';
 import 'dart:core';
+import 'package:ecohacks/screens/UplaodPage.dart';
 
 import 'package:ecohacks/screens/Login_Screen.dart';
 import 'package:ecohacks/screens/Home_Screen.dart';
@@ -258,7 +259,7 @@ class CreateButton extends StatelessWidget {
     return OutlinedButton(
       onPressed: (() {
         debugPrint('Will Create soon!');
-         Navigator.push(context, MaterialPageRoute(builder: (BuildContext context){ return Home() ;}),);
+         Navigator.push(context, MaterialPageRoute(builder: (BuildContext context){ return MainApp() ;}),);
       }),
       style: OutlinedButton.styleFrom(
             
@@ -287,105 +288,4 @@ class CreateButton extends StatelessWidget {
   }
 }
 
-class Home extends StatefulWidget {
-  const Home({super.key});
 
-  @override
-  State<Home> createState() => _HomeState();
-}
-class _HomeState extends State<Home> {
-  final Future<FirebaseApp> _initialization = Firebase.initializeApp();
-  String? user;
-  String? imgUrl;
-
-  uploadToStorage(){
-    FileUploadInputElement input = FileUploadInputElement();
-    FirebaseStorage fs= FirebaseStorage.instance;
-    input.accept = '.png,.jpg';
-    input.click();
-    
-    input.onChange.listen((event){
-      
-      final file = input.files!.first;
-      final path = '${file.name}';
-      print(path);
-      final reader = FileReader();
-      reader.readAsDataUrl(file);
-      print(file);
-      print(reader);
-      reader.onLoadEnd.listen((event) async {
-        var snapshot = await fs.ref().child(path).putBlob(file);
-        String downloadUrl = await snapshot.ref.getDownloadURL();
-        print(downloadUrl);
-        setState((){
-          imgUrl = downloadUrl;
-        });
-      });
-    });
-  }
-  @override
-  Widget build(BuildContext context) {
-    return FutureBuilder(
-      future: _initialization,
-      builder: (context, snapshot){
-        // if(snapshot.hasError){
-        //   return Center(
-        //     // debugPrint(snapshot),
-        //     child: Text('Went Wrong'),
-        //   );
-        // }
-        if(snapshot.connectionState==ConnectionState.done){
-          return Scaffold(
-            body: Column(
-               mainAxisAlignment: MainAxisAlignment.spaceAround, 
-              children: [
-                 Placeholder(
-                    fallbackHeight: 200,
-                    fallbackWidth: 400,
-                   )
-                   ,
-                  Container(
-                    height: 500,
-                    width: 500,
-                    child: Image.asset('assets/Group1.png')
-                   ),
-                   SizedBox(
-                    height: 50,
-                   ),
-                   OutlinedButton(
-                      onPressed: ()=> uploadToStorage(),
-                     style: OutlinedButton.styleFrom(
-            
-            side: BorderSide(width: 2.0, color: Color(0xFF5BEA18), ),
-            // padding: const EdgeInsets.all(25),
-            padding: const EdgeInsets.fromLTRB(100, 25, 100, 25),
-            shape: StadiumBorder(),
-            
-           ),
-           
-           
-            child: Text('Upload',
-            style: TextStyle(color: Color(0xFF5BEA18), fontSize: 11.0,),)
-           
-            // child: Align(
-            //   child: Padding(padding: const EdgeInsets.symmetric(horizontal: 12.0)),
-            // ),
-
-            
-            
-           
-           
-           
-    
-                   ),
-              ],
-            )
-          );
-        }
-        return Center(
-          child: CircularProgressIndicator(),
-        );
-      },
-    );
-  }
-}

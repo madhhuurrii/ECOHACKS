@@ -89,21 +89,22 @@ class _HomeState extends State<Home> {
           return Scaffold(
             body: Column(
               children: [
-                user==null ? Placeholder(
-                    fallbackHeight: 200,
-                    fallbackWidth: 400,
-                   )
-                   : Container(
-                    height: 300,
-                    width: 300,
-                    child: Image.network(
-                      imgUrl!,
-                      fit: BoxFit.contain,
-                    ),
-                   ),
-                   SizedBox(
-                    height: 50,
-                   ),
+                // user==null ?
+                //  Placeholder(
+                //     fallbackHeight: 200,
+                //     fallbackWidth: 400,
+                //    )
+                  //   Container(
+                  //   height: 300,
+                  //   width: 300,
+                  //   child: Image.network(
+                  //     imgUrl!,
+                  //     fit: BoxFit.contain,
+                  //   ),
+                  //  ),
+                  //  SizedBox(
+                  //   height: 50,
+                  //  ),
                    OutlinedButton(
                       onPressed: ()=> uploadToStorage(),
                     
